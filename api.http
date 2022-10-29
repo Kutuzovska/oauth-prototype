@@ -1,0 +1,8 @@
+# clientId: f4a569dd2f5243fbeb740f0546947e01
+# Secret: 01fbdb1e892a5a3e4aa371d5f11cd934cdd01bbd50c82f5481abcd12b79ffbd44c721424bebaa9095a8b39c2f71bdc6f5ebb0dd3c222714e49fa8425bff41514
+
+POST http://localhost/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password
+
