@@ -9,3 +9,25 @@ grant_type=authorization_code
 
 ###
 GET http://localhost/authorize?response_type=code&client_id=f4a569dd2f5243fbeb740f0546947e01&redirect_uri=http%3A%2F%2Flocalhost&scope=email&state=123
+
+
+
+
+###
+POST http://localhost/api/login
+Content-Type: application/json
+
+{
+  "username": "kek@les.com",
+  "password": "123"
+}
+
+### registration
+POST http://localhost/api/registration
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "kek@les.com",
+  "password": "123"
+}
