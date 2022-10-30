@@ -1,7 +1,6 @@
 league_oauth2_server:
     authorization_server:
         enable_auth_code_grant: true
-        enable_password_grant: true
 
         private_key: '%env(resolve:OAUTH_PRIVATE_KEY)%'
         private_key_passphrase: '%env(resolve:OAUTH_PASSPHRASE)%'
