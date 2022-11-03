@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
-      - ./backend/:/app/
-    command: symfony server:start
+      - ./api/:/app/
+    tty: true
     ports:
       - "80:8000"
   db:
