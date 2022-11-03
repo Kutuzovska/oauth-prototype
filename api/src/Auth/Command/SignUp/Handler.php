@@ -17,7 +17,7 @@ final class Handler
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly PasswordHasher $hasher,
-        private readonly Flusher $flusher,
+        private readonly Flusher        $flusher,
     )
     {
     }

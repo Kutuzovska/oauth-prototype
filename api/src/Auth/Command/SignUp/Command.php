@@ -10,5 +10,5 @@ final class Command
     public string $phone = '';
     public string $firstName = '';
     public string $lastName = '';
-    public string $patronymic  = '';
+    public string $patronymic = '';
 }

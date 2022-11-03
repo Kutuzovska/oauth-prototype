@@ -3,9 +3,29 @@ declare(strict_types=1);
 
 namespace App\Auth\Service;
 
-interface PasswordHasher
-{
-    public function hash(string $password): string;
+use RuntimeException;
+use Webmozart\Assert\Assert;
 
-    public function validate(string $password, string $hash): bool;
+class PasswordHasher
+{
+    private const PASSWORD_MIN_LENGTH = 5;
+
+    public function hash(string $password): string
+    {
+        Assert::notEmpty($password);
+        Assert::minLength($password, self::PASSWORD_MIN_LENGTH);
+
+        $hash = password_hash($password, PASSWORD_ARGON2I);
+
+        if (empty($hash)) {
+            throw new RuntimeException('Unable to generate hash');
+        }
+
+        return $hash;
+    }
+
+    public function validate(string $password, string $hash): bool
+    {
+        return password_verify($password, $hash);
+    }
 }

@@ -8,7 +8,7 @@ use Webmozart\Assert\Assert;
 
 final class Token
 {
-    const TOKEN_LENGTH = 4;
+    private const TOKEN_LENGTH = 4;
     private readonly string $value;
     private readonly DateTimeImmutable $expires;
 

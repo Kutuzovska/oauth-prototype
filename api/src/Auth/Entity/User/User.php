@@ -11,17 +11,18 @@ final class User
     private readonly DateTimeImmutable $createdAt;
     private Email $email;
     private Phone $phone;
-
     private string $passwordHash;
     private ?Token $loginConfirmToken;
 
+    private Status $status;
+
     public function __construct(
-        Id $id,
-        Email $email,
-        Phone $phone,
+        Id                $id,
+        Email             $email,
+        Phone             $phone,
         DateTimeImmutable $createdAt,
-        string $passwordHash,
-        ?Token $token,
+        string            $passwordHash,
+        ?Token            $token,
     )
     {
         $this->id = $id;
@@ -30,6 +31,17 @@ final class User
         $this->createdAt = $createdAt;
         $this->passwordHash = $passwordHash;
         $this->loginConfirmToken = $token;
+        $this->status = Status::WAIT;
+    }
+
+    public function isWait(): bool
+    {
+        return $this->status->isWait();
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status->isActive();
     }
 
     public function getId(): Id
