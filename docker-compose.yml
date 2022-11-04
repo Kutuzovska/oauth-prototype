@@ -8,7 +8,7 @@ services:
     working_dir: /app
     volumes:
       - ./frontend/:/app/
-    command: ng serve
+    command: bash -c "npm install && ng serve"
     ports:
       - "4200:4200"
   php:
@@ -18,7 +18,7 @@ services:
     working_dir: /app
     volumes:
       - ./api/:/app/
-    command: symfony server:start
+    command: bash -c "composer install && symfony server:start"
     ports:
       - "80:8000"
   db:

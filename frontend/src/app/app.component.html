@@ -1,23 +1,26 @@
-<nav class="navbar has-shadow is-spaced is-transparent is-dark">
-  <div class="container">
-    <div class="navbar-menu">
-      <div class="navbar-start">
+<main class="app-main has-background-white-bis">
+  <nav class="navbar has-shadow is-transparent is-dark">
+    <div class="container">
+      <div class="navbar-brand">
         <a class="navbar-item is-size-3">
           {{ title }}
         </a>
       </div>
-
-      <div class="navbar-end">
-        <a class="navbar-item has-text-weight-bold">
-          {{ email }}
-        </a>
-        <a class="navbar-item">
-          <app-button [transparent]="true">
-          </app-button>
-        </a>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item has-text-weight-bold">
+            {{ email }}
+          </a>
+          <a class="navbar-item">
+            <button type="button" class="button is-primary is-outlined">
+              Выход
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</main>
+

@@ -1,1 +1,47 @@
-<p>login works!</p>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form (ngSubmit)="submit()">
+            <p class="has-text-centered title">Вход</p>
+
+            <div class="field">
+              <label class="label">Email {{ emailInput.dirty }} {{ emailInput.invalid }}</label>
+              <div class="control">
+                <input
+                  #emailInput="ngModel"
+                  [(ngModel)]="email"
+                  type="email"
+                  name="email"
+                  email
+                  class="input"
+                  required
+                  placeholder="mail@example.com">
+              </div>
+              <p *ngIf="emailInput.dirty && emailInput.invalid" class="help is-danger">
+                This email is invalid
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">Пароль</label>
+              <div class="control">
+                <input [(ngModel)]="password"
+                       required
+                       name="password" autocomplete="new-password" class="input" placeholder="A5kE83d9fXTL"
+                       type="password">
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <button class="button is-link is-fullwidth" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
