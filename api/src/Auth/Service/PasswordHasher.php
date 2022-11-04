@@ -6,7 +6,7 @@ namespace App\Auth\Service;
 use RuntimeException;
 use Webmozart\Assert\Assert;
 
-class PasswordHasher
+final class PasswordHasher
 {
     private const PASSWORD_MIN_LENGTH = 5;
 

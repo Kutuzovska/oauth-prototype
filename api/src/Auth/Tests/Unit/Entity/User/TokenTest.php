@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class TokenTest extends TestCase
+final class TokenTest extends TestCase
 {
     public function testSuccess(): void
     {

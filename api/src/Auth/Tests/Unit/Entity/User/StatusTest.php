@@ -6,7 +6,7 @@ namespace App\Auth\Tests\Unit\Entity\User;
 use App\Auth\Entity\User\Status;
 use PHPUnit\Framework\TestCase;
 
-class StatusTest extends TestCase
+final class StatusTest extends TestCase
 {
     public function testSuccess(): void
     {
