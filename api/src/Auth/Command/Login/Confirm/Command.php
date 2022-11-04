@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Auth\Command\Login\Request;
+namespace App\Auth\Command\Login\Confirm;
 
 final class Command
 {
     public string $email = '';
 
-    public string $password = '';
+    public string $code = '';
 }

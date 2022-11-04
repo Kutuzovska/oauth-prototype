@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Auth\Service;
 
+use App\Auth\Entity\User\Code;
 use App\Auth\Entity\User\Token;
 use DateInterval;
 use DateTimeImmutable;
@@ -13,7 +14,7 @@ final class Tokenizer
     {
     }
 
-    public function generate(string $code, DateTimeImmutable $date): Token
+    public function generate(Code $code, DateTimeImmutable $date): Token
     {
         return new Token($code, $date->add($this->interval));
     }

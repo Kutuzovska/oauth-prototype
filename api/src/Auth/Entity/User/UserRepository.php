@@ -9,5 +9,9 @@ interface UserRepository
 
     public function hasByPhone(Phone $phone): bool;
 
+    public function getByEmail(Email $email): User;
+
     public function add(User $user): void;
+
+    public function save(User $user): void;
 }

@@ -5,6 +5,7 @@ namespace App\Auth\Command\Login\Request;
 
 use App\Auth\Entity\User\Email;
 use App\Auth\Entity\User\UserRepository;
+use App\Auth\Service\LoginConfirmationSender;
 use App\Auth\Service\PasswordHasher;
 use DomainException;
 
@@ -13,6 +14,7 @@ final class Handler
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly PasswordHasher $hasher,
+        private readonly LoginConfirmationSender $sender,
         private readonly Flusher        $flusher,
     )
     {
@@ -26,8 +28,14 @@ final class Handler
             throw new DomainException('Email or password is incorrect');
         }
 
-        if ($user->isWait()) {
-
+        if ($user->isActive()) {
+            throw new DomainException('User already active!');
         }
+
+        $token = $this->sender->send($user->getPhone());
+        $user->setLoginConfirmToken($token);
+
+        $this->userRepository->save($user);
+        $this->flusher->flush();
     }
 }

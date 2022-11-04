@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Auth\Tests\Unit\Entity\User;
 
+use App\Auth\Entity\User\Code;
 use App\Auth\Entity\User\Token;
 use DateTimeImmutable;
 use InvalidArgumentException;
@@ -12,30 +13,37 @@ final class TokenTest extends TestCase
 {
     public function testSuccess(): void
     {
+        $code = new Code('1234');
         $token = new Token(
-            $code = '1234',
+            $code,
             $now = new DateTimeImmutable(),
         );
 
-        self::assertEquals($code, $token->getValue());
+        self::assertEquals($code->getValue(), $token->getValue());
         self::assertEquals($now, $token->getExpires());
     }
 
-    public function testIncorrectLength(): void
+    public function testValidateWrongCode(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        new Token('123', new DateTimeImmutable());
+        $code = new Code('1234');
+        $token = new Token(
+            $code,
+            $now = new DateTimeImmutable(),
+        );
+
+        $this->expectException(\DomainException::class);
+        $token->validate(new Code('1235'), $now->modify('-5 minutes'));
     }
 
-    public function testIncorrectFormat(): void
+    public function testValidateWrongExpire(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        new Token('A12B', new DateTimeImmutable());
-    }
+        $code = new Code('1234');
+        $token = new Token(
+            $code,
+            $now = new DateTimeImmutable(),
+        );
 
-    public function testEmpty(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new Token('', new DateTimeImmutable());
+        $this->expectException(\DomainException::class);
+        $token->validate($code, $now->modify('+5 minutes'));
     }
 }

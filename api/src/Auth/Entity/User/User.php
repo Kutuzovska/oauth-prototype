@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Auth\Entity\User;
 
 use DateTimeImmutable;
+use DomainException;
 
 final class User
 {
@@ -39,11 +40,6 @@ final class User
         return $this->status->isWait();
     }
 
-    public function isActive(): bool
-    {
-        return $this->status->isActive();
-    }
-
     public function getId(): Id
     {
         return $this->id;
@@ -69,8 +65,33 @@ final class User
         return $this->loginConfirmToken;
     }
 
+    public function setLoginConfirmToken(?Token $loginConfirmToken): void
+    {
+        $this->loginConfirmToken = $loginConfirmToken;
+    }
+
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function confirm(Code $code): void
+    {
+        if ($this->isActive()) {
+            throw new DomainException('User already active');
+        }
+
+        if ($this->loginConfirmToken === null) {
+            throw new DomainException('No verification code, please send request');
+        }
+
+        $this->loginConfirmToken->validate($code, new DateTimeImmutable());
+        $this->status = Status::ACTIVE;
+        $this->loginConfirmToken = null;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status->isActive();
     }
 }
