@@ -1,4 +1,4 @@
-<section class="hero app-background is-bold is-fullheight">
+<section class="hero app-background is-bold is-fullheight is-relative">
   <div class="hero-head">
     <header class="navbar">
       <div class="container">
@@ -9,7 +9,7 @@
             </a>
           </div>
         </div>
-        <div class="navbar-menu" *ngIf="isGuest">
+        <div *ngIf="!isGuest" class="navbar-menu">
           <div class="navbar-end">
             <div class="navbar-item has-text-weight-bold">
               {{ email }}
@@ -35,29 +35,16 @@
     <footer class="navbar">
       <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item is-unselectable">
-              <div class="dropdown is-up" [ngClass]="{ 'is-active': isActiveLanguageChanger }" #language>
-                <div class="dropdown-trigger" (click)="isActiveLanguageChanger = !isActiveLanguageChanger">
-                  <span class="icon-text">
-                    <app-icon>language</app-icon>
-                    <span class="ml-2">{{ notActiveLanguageLabel }}</span>
-                  </span>
-                </div>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <a *ngFor="let language of languages"
-                       [ngClass]="{ 'is-active': language === activeLanguage }"
-                       class="dropdown-item" (click)="changeLanguage(language.value)">
-                      {{ language.label }}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </a>
-
+          <a class="navbar-item is-unselectable" (click)="changeLanguage()">
+            <span class="icon-text">
+              <app-icon>language</app-icon>
+              <span class="ml-2">{{ notActiveLanguageLabel }}</span>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
   </div>
-</section>
 
+  <app-loader></app-loader>
+</section>

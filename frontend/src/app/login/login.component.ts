@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../core/services/auth.service';
+import { NgForm } from '@angular/forms';
+import { NotificationService } from '../core/services/notification.service';
+import { LoaderService } from '../shared/loader/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -6,18 +10,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email = '';
+  constructor(
+    private authService: AuthService,
+    private notificationService: NotificationService,
+    private loaderService: LoaderService,
+  ) {}
 
-  password = '';
+  get user() {
+    return this.authService.user;
+  }
 
-  // login(event: Event, loginForm: NgForm) {
-  //   event.preventDefault();
-  //   console.log(this.email);
-  //   console.log(this.password);
-  //   console.log(loginForm);
-  // }
+  async submit(form: NgForm) {
+    if (form.invalid) return;
 
-  submit() {
-    console.log('submit');
+    try {
+      this.loaderService.start();
+      await this.authService.login();
+      this.notificationService.success('Good!');
+    } catch (e) {
+      this.notificationService.error('Bad!');
+    } finally {
+      this.loaderService.stop();
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Lang, TranslateService } from './core/services/translate.service';
 import { AuthService } from './core/services/auth.service';
 
@@ -10,20 +10,10 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent {
   title = 'Hello!';
 
-  email = 'email@example.com';
-
-  isActiveLanguageChanger = false;
-
-  languages = [
-    {
-      label: 'English',
-      value: Lang.EN,
-    },
-    {
-      label: 'Русский',
-      value: Lang.RU,
-    },
-  ];
+  private readonly languages = {
+    [Lang.EN]: 'English',
+    [Lang.RU]: 'Русский',
+  };
 
   constructor(
     private translateService: TranslateService,
@@ -34,34 +24,19 @@ export class AppComponent {
     return this.authService.IsGuest;
   }
 
+  get email(): string {
+    return this.authService.user.email;
+  }
+
+  private get notActiveLanguage(): Lang {
+    return this.translateService.active === Lang.RU ? Lang.EN : Lang.RU;
+  }
+
   get notActiveLanguageLabel(): string {
-    const language = this.languages.find(
-      (item) => item.value !== this.translateService.active,
-    );
-    if (language) return language.label;
-    return '';
+    return this.languages[this.notActiveLanguage];
   }
 
-  get activeLanguage() {
-    return (
-      this.languages.find(
-        (item) => item.value === this.translateService.active,
-      ) ?? null
-    );
-  }
-
-  changeLanguage(lang: Lang) {
-    this.translateService.change(lang);
-    this.isActiveLanguageChanger = false;
-  }
-
-  @ViewChild('language') language: ElementRef | undefined;
-
-  @HostListener('document:mousedown', ['$event'])
-  onGlobalClick(event: Event): void {
-    const target = event.target as HTMLElement;
-    if (this.language && !this.language.nativeElement.contains(target)) {
-      this.isActiveLanguageChanger = false;
-    }
+  changeLanguage() {
+    this.translateService.change(this.notActiveLanguage);
   }
 }

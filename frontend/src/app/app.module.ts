@@ -10,11 +10,13 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { CoreModule } from './core/core.module';
 import { TranslateService } from './core/services/translate.service';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
