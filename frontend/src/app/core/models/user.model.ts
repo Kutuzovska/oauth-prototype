@@ -3,8 +3,10 @@ class User {
 
   private _password = '';
 
+  private _isGuest = true;
+
   get isGuest(): boolean {
-    return true;
+    return this._isGuest;
   }
 
   get email(): string {
@@ -21,6 +23,14 @@ class User {
 
   set password(value: string) {
     this._password = value;
+  }
+
+  confirm() {
+    this._isGuest = false;
+  }
+
+  clean() {
+    this._isGuest = true;
   }
 }
 

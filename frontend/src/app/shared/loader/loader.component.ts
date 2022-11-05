@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoaderService } from './loader.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 
@@ -19,10 +19,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ]),
   ],
 })
-export class LoaderComponent {
+export class LoaderComponent implements OnInit {
+  isActive = false;
+
   constructor(private loaderService: LoaderService) {}
 
-  get isActive(): boolean {
-    return this.loaderService.isActive;
+  ngOnInit() {
+    return this.loaderService.isActive$.subscribe((value) => {
+      this.isActive = value;
+    });
   }
 }

@@ -1,28 +1,6 @@
 <section class="hero app-background is-bold is-fullheight is-relative">
   <div class="hero-head">
-    <header class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <div class="navbar-brand is-unselectable">
-            <a class="navbar-item is-size-3" routerLink="">
-              {{ title }}
-            </a>
-          </div>
-        </div>
-        <div *ngIf="!isGuest" class="navbar-menu">
-          <div class="navbar-end">
-            <div class="navbar-item has-text-weight-bold">
-              {{ email }}
-            </div>
-            <div class="navbar-item">
-              <button class="button is-outlined is-link is-radiusless">
-                {{ 'exit' | transloco | titlecase }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+    <app-header></app-header>
   </div>
 
   <div class="hero-body">

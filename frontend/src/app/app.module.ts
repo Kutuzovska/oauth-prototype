@@ -11,9 +11,10 @@ import { CoreModule } from './core/core.module';
 import { TranslateService } from './core/services/translate.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SettingsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { BehaviorSubject } from 'rxjs';
 
 export enum Lang {
   EN = 'en',
@@ -8,6 +9,8 @@ export enum Lang {
 
 @Injectable()
 export class TranslateService {
+  public active$ = new BehaviorSubject(Lang.RU);
+
   constructor(private translocoService: TranslocoService) {}
 
   init() {
@@ -15,12 +18,9 @@ export class TranslateService {
     this.change(lang);
   }
 
-  get active(): string {
-    return this.translocoService.getActiveLang();
-  }
-
   change(lang: Lang) {
     this.translocoService.setActiveLang(lang);
     localStorage.setItem('lang', lang);
+    this.active$.next(lang);
   }
 }

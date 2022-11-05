@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoaderService {
-  private _isActive = false;
+  public isActive$ = new BehaviorSubject(false);
 
   public start(): void {
-    this._isActive = true;
+    this.isActive$.next(true);
   }
 
   public stop(): void {
-    this._isActive = false;
-  }
-
-  get isActive(): boolean {
-    return this._isActive;
+    this.isActive$.next(false);
   }
 }

@@ -1,0 +1,26 @@
+<header class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <div class="navbar-brand is-unselectable">
+        <a class="navbar-item is-size-3" routerLink="">
+          {{ title }}
+        </a>
+      </div>
+    </div>
+    <div *ngIf="!isGuest" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-text-weight-bold">
+          {{ email }}
+        </div>
+        <div class="navbar-item">
+          <button
+            (click)="logout()"
+            class="button is-outlined is-link is-radiusless"
+          >
+            {{ 'exit' | transloco | titlecase }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
