@@ -1,0 +1,11 @@
+{
+  "exit": "exit",
+  "login": {
+    "password": "password",
+    "enter": "enter",
+    "error": {
+      "email": "Email is invalid",
+      "password": "Password is invalid"
+    }
+  }
+}

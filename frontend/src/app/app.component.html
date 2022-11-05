@@ -1,26 +1,63 @@
-<main class="app-main has-background-white-bis">
-  <nav class="navbar has-shadow is-transparent is-dark">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item is-size-3">
-          {{ title }}
-        </a>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-end">
-          <a class="navbar-item has-text-weight-bold">
-            {{ email }}
-          </a>
-          <a class="navbar-item">
-            <button type="button" class="button is-primary is-outlined">
-              Выход
-            </button>
-          </a>
+<section class="hero app-background is-bold is-fullheight">
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <div class="navbar-brand is-unselectable">
+            <a class="navbar-item is-size-3" routerLink="">
+              {{ title }}
+            </a>
+          </div>
+        </div>
+        <div class="navbar-menu" *ngIf="isGuest">
+          <div class="navbar-end">
+            <div class="navbar-item has-text-weight-bold">
+              {{ email }}
+            </div>
+            <div class="navbar-item">
+              <button class="button is-outlined is-link is-radiusless">
+                {{ 'exit' | transloco | titlecase }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </header>
+  </div>
 
-  <router-outlet></router-outlet>
-</main>
+  <div class="hero-body">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <footer class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item is-unselectable">
+              <div class="dropdown is-up" [ngClass]="{ 'is-active': isActiveLanguageChanger }" #language>
+                <div class="dropdown-trigger" (click)="isActiveLanguageChanger = !isActiveLanguageChanger">
+                  <span class="icon-text">
+                    <app-icon>language</app-icon>
+                    <span class="ml-2">{{ notActiveLanguageLabel }}</span>
+                  </span>
+                </div>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <a *ngFor="let language of languages"
+                       [ngClass]="{ 'is-active': language === activeLanguage }"
+                       class="dropdown-item" (click)="changeLanguage(language.value)">
+                      {{ language.label }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+</section>
 

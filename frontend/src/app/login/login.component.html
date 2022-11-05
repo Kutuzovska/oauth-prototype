@@ -1,13 +1,14 @@
-<section class="section">
-  <div class="container">
     <div class="columns">
-      <div class="column is-4 is-offset-4">
-        <div class="box">
-          <form (ngSubmit)="submit()">
-            <p class="has-text-centered title">Вход</p>
-
+      <div class="column
+        is-4-desktop is-offset-4-desktop
+        is-6-tablet is-offset-3-tablet
+        is-12-mobile is-offset-0-mobile
+        is-paddingless
+      ">
+        <div class="box is-dark is-radiusless">
+          <form (ngSubmit)="submit()" #loginForm="ngForm">
             <div class="field">
-              <label class="label">Email {{ emailInput.dirty }} {{ emailInput.invalid }}</label>
+              <label class="label">Email</label>
               <div class="control">
                 <input
                   #emailInput="ngModel"
@@ -15,33 +16,47 @@
                   type="email"
                   name="email"
                   email
-                  class="input"
+                  class="input is-radiusless"
                   required
                   placeholder="mail@example.com">
               </div>
-              <p *ngIf="emailInput.dirty && emailInput.invalid" class="help is-danger">
-                This email is invalid
+              <p class="help is-danger">
+                <span *ngIf="(emailInput.dirty || loginForm.submitted) && emailInput.invalid">
+                  {{ 'login.error.email' | transloco }}
+                </span>&nbsp;
               </p>
             </div>
 
             <div class="field">
-              <label class="label">Пароль</label>
+              <label class="label">
+                {{ 'login.password' | transloco | titlecase }}
+              </label>
               <div class="control">
-                <input [(ngModel)]="password"
-                       required
-                       name="password" autocomplete="new-password" class="input" placeholder="A5kE83d9fXTL"
-                       type="password">
+                <input
+                  #passwordInput="ngModel"
+                  [(ngModel)]="password"
+                  required
+                  name="password"
+                  autocomplete="new-password"
+                  class="input is-radiusless"
+                  placeholder="A5kE83d9fXTL"
+                  type="password">
+                <p class="help is-danger">
+                  <span *ngIf="(passwordInput.dirty || loginForm.submitted) && passwordInput.invalid">
+                    {{ 'login.error.password' | transloco }}
+                  </span>&nbsp;
+                </p>
               </div>
             </div>
 
             <div class="field">
               <div class="control">
-                <button class="button is-link is-fullwidth" type="submit">Submit</button>
+                <button class="button is-link is-fullwidth is-radiusless" type="submit">
+                  {{ 'login.enter' | transloco | titlecase }}
+                </button>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </div>
-</section>
