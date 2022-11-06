@@ -6,6 +6,12 @@
           {{ title }}
         </a>
       </div>
+
+      <div *ngIf="!isGuest" class="navbar-item is-hidden-desktop ml-auto">
+        <button (click)="logout()" class="button is-link is-outlined px-3">
+          <app-icon>logout</app-icon>
+        </button>
+      </div>
     </div>
     <div *ngIf="!isGuest" class="navbar-menu">
       <div class="navbar-end">
