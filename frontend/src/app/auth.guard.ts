@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot,
   ): boolean {
     const isLoginPage = state.url === '/login';
-    const { isGuest } = this.authService;
+    const { isGuest } = this.authService.user;
 
     if (isGuest && !isLoginPage) {
       this.router.navigate(['login']);

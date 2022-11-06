@@ -3,10 +3,8 @@
     <app-header></app-header>
   </div>
 
-  <div class="hero-body">
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="app-body">
+    <router-outlet></router-outlet>
   </div>
 
   <div class="hero-foot">
@@ -19,6 +17,18 @@
               <span class="ml-2">{{ notActiveLanguageLabel }}</span>
             </span>
           </a>
+          <a class="navbar-item">
+            <span class="icon-text">
+              <app-icon>support</app-icon>
+              <span class="ml-2">{{ 'help' | transloco | titlecase }}</span>
+            </span>
+          </a>
+
+          <div class="is-flex ml-auto app-files">
+            <a class="navbar-item is-size-7"> О компании </a>
+            <a class="navbar-item is-size-7"> Конфиденциальность </a>
+            <a class="navbar-item is-size-7"> Соглашение </a>
+          </div>
         </div>
       </div>
     </footer>

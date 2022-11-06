@@ -1,5 +1,6 @@
 {
   "exit": "exit",
+  "help": "help",
   "login": {
     "password": "password",
     "enter": "enter",

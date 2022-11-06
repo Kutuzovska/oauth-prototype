@@ -1,68 +1,70 @@
-<div class="columns">
-  <div
-    class="column is-4-desktop is-offset-4-desktop is-6-tablet is-offset-3-tablet is-12-mobile is-offset-0-mobile is-paddingless"
-  >
-    <div class="box is-dark is-radiusless">
-      <form (ngSubmit)="submit(form)" #form="ngForm">
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
-            <input
-              [(ngModel)]="user.email"
-              #email="ngModel"
-              class="input is-radiusless"
-              type="email"
-              name="email"
-              email
-              required
-              placeholder="mail@example.com"
-            />
-          </div>
-          <p class="help is-danger">
-            <span *ngIf="form.submitted && email.dirty && email.invalid">
-              {{ 'login.error.email' | transloco }}
-            </span>
-            &nbsp;
-          </p>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            {{ 'login.password' | transloco | titlecase }}
-          </label>
-          <div class="control">
-            <input
-              #password="ngModel"
-              [(ngModel)]="user.password"
-              class="input is-radiusless"
-              autocomplete="new-password"
-              type="password"
-              name="password"
-              required
-              placeholder="A5kE83d9fXTL"
-            />
+<div class="container mt-6 pt-6">
+  <div class="columns">
+    <div
+      class="column is-4-desktop is-offset-4-desktop is-6-tablet is-offset-3-tablet is-12-mobile is-offset-0-mobile is-paddingless"
+    >
+      <div class="box is-dark is-radiusless">
+        <form (ngSubmit)="submit(form)" #form="ngForm">
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+                [(ngModel)]="user.email"
+                #email="ngModel"
+                class="input is-radiusless"
+                type="email"
+                name="email"
+                email
+                required
+                placeholder="mail@example.com"
+              />
+            </div>
             <p class="help is-danger">
-              <span
-                *ngIf="form.submitted && password.dirty && password.invalid"
-              >
-                {{ 'login.error.password' | transloco }}
+              <span *ngIf="form.submitted && email.dirty && email.invalid">
+                {{ 'login.error.email' | transloco }}
               </span>
               &nbsp;
             </p>
           </div>
-        </div>
 
-        <div class="field">
-          <div class="control">
-            <button
-              class="button is-link is-fullwidth is-radiusless"
-              type="submit"
-            >
-              {{ 'login.enter' | transloco | titlecase }}
-            </button>
+          <div class="field">
+            <label class="label">
+              {{ 'login.password' | transloco | titlecase }}
+            </label>
+            <div class="control">
+              <input
+                #password="ngModel"
+                [(ngModel)]="user.password"
+                class="input is-radiusless"
+                autocomplete="new-password"
+                type="password"
+                name="password"
+                required
+                placeholder="A5kE83d9fXTL"
+              />
+              <p class="help is-danger">
+                <span
+                  *ngIf="form.submitted && password.dirty && password.invalid"
+                >
+                  {{ 'login.error.password' | transloco }}
+                </span>
+                &nbsp;
+              </p>
+            </div>
           </div>
-        </div>
-      </form>
+
+          <div class="field">
+            <div class="control">
+              <button
+                class="button is-link is-fullwidth is-radiusless"
+                type="submit"
+              >
+                {{ 'login.enter' | transloco | titlecase }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

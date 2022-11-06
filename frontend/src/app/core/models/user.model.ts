@@ -9,6 +9,10 @@ class User {
     return this._isGuest;
   }
 
+  get isActive(): boolean {
+    return false;
+  }
+
   get email(): string {
     return 'mail@example.com';
   }
